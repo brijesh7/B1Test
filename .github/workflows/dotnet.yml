@@ -17,5 +17,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Restore Packages
         run: nuget restore B1Test.sln
-      - name: Build solution
-        run: 'msbuild B1Test.sln -t:rebuild -property:Configuration=Release'
+      - name: Build
+        run: dotnet build --no-restore
+      #- name: Build solution
+      #  run: 'msbuild B1Test.sln -t:rebuild -property:Configuration=Release'
