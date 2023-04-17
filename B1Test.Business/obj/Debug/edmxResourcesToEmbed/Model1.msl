@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PracticleB1ModelStoreContainer" CdmEntityContainer="PracticleB1Entities">
+    <EntitySetMapping Name="ItemMasters">
+      <EntityTypeMapping TypeName="PracticleB1Model.ItemMaster">
+        <MappingFragment StoreEntitySet="ItemMaster">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemSchemas">
+      <EntityTypeMapping TypeName="PracticleB1Model.ItemSchema">
+        <MappingFragment StoreEntitySet="ItemSchema">
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="SchemaID" ColumnName="SchemaID" />
+          <ScalarProperty Name="Formula" ColumnName="Formula" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

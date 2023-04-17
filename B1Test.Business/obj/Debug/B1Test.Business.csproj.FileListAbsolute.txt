@@ -1,0 +1,12 @@
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\B1Test.Business.dll.config
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\B1Test.Business.dll
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\B1Test.Business.pdb
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\EntityFramework.dll
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\EntityFramework.SqlServer.dll
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\EntityFramework.xml
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\bin\Debug\EntityFramework.SqlServer.xml
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\obj\Debug\B1Test.Business.csproj.AssemblyReference.cache
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\obj\Debug\B1Test.Business.csproj.CoreCompileInputs.cache
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\obj\Debug\B1Test.Business.csproj.CopyComplete
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\obj\Debug\B1Test.Business.dll
+D:\WorkingProjects\HhaXchange\B1Test\B1Test\B1Test.Business\obj\Debug\B1Test.Business.pdb

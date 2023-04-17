@@ -1,0 +1,459 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+</div>
+
+<div class="row">
+
+    <div id="divItemMaster">
+        <h2>Item Master</h2>
+        <table>
+            <tr>
+                <td>
+                    ItemID
+                </td>
+                <td>
+                    <input type="text" id="txtItemID" name="txtItemID" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Amount
+                </td>
+                <td>
+                    <input type="text" id="txtAmount" name="txtAmount" required />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input value="Add" type="button" id="btnAddItem" name="btnAddItem" />
+                    <input value="Clear" type="button" id="btnClearItem" name="btnClearItem" onclick="clearItemMaster();" />
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="row">
+        <br /><br />
+    </div>
+
+    <div id="placeHolder">
+    </div>
+</div>
+
+<div>
+    <hr />
+    <h2>Item Schema</h2>
+
+    <table>
+        <tr>
+            <th>
+                Alias
+            </th>
+            <td>
+                <input type="text" id="txtAlias" name="txtAlias" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                SchemaID
+            </th>
+            <td>
+                <input type="text" id="txtSchemaID" name="txtSchemaID" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Formula
+            </th>
+            <td>
+                <input type="text" id="txtFormula" name="txtFormula" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Priority
+            </th>
+            <td>
+                <input type="text" id="txtPriority" name="txtPriority" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="Add Schema" name="btnAddEditSchema" onclick="AddEditSchema();" id="btnAddEditSchema">
+                <input type="button" value="Clear Schema" name="btnClearSchema" id="btnClearSchema" onclick="clearItemSchema();">
+            </td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <br /><br />
+    </div>
+
+    <div id="placeHolderSchema">
+    </div>
+
+    <div class="row">
+        <br /><br />
+
+    </div>
+
+    <input type="button" value="Export" id="btnExport" name="btnExport"/>
+
+    <div class="row">
+        <br /><br />
+    </div>
+
+    <div id="placeHolderExcel">
+    </div>
+</div>
+
+
+<script id="tblUser" type="text/html">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    ItemID
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#foreach $T as record}
+            <tr>
+                <td>
+                    {$T.record.ItemID}
+                </td>
+                <td>
+                    {$T.record.Amount}
+                </td>
+                <td>
+                    <input type="button" value="Delete" data-id="{$T.record.ItemID}" onclick="deleteItem(this);" id="btnDltItem" name="btnDltItem" />
+                    <input type="button" value="Update" data-id="{$T.record.ItemID}" data-amt="{$T.record.Amount}" onclick="updateItem(this);" id="btnUpdateItem" name="btnUpdateItem" />
+
+                </td>
+            </tr>
+            {#/for}
+        </tbody>
+    </table>
+</script>
+
+<script id="tblSchema" type="text/html">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    Alias
+                </th>
+                <th>
+                    SchemaID
+                </th>
+                <th>
+                    Formula
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#foreach $T as schema}
+            <tr>
+                <td>
+                    {$T.schema.Alias}
+                </td>
+                <td>
+                    {$T.schema.SchemaID}
+                </td>
+                <td>
+                    {$T.schema.Formula}
+                </td>
+                <td>
+                    {$T.schema.Priority}
+                </td>
+                <td>
+                    <input type="button" value="Delete" data-id="{$T.schema.SchemaID}" onclick="deleteSchema(this);" id="btnDltShema" name="btnDltShema" />
+                    <input type="button" value="Update" data-id="{$T.schema.SchemaID}" onclick="updateSchema(this);" id="btnUpdateItem" name="btnUpdateItem" />
+
+                </td>
+            </tr>
+            {#/for}
+        </tbody>
+    </table>
+</script>
+
+<script id="tblExcel" type="text/html">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Amount
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {#foreach $T as excel}
+            <tr>
+                <td>
+                    {$T.excel.Name}
+                </td>
+                <td>
+                    {$T.excel.Formula}
+                </td>
+               
+            </tr>
+            {#/for}
+        </tbody>
+    </table>
+</script>
+
+<script type="text/javascript">
+    (function () {
+        //$("#divItemMaster").validate({
+        //    rules: {
+        //        txtItemID: "required"
+        //    },
+        //    messages: {
+        //        txtItemID: "Please add ItemID"
+
+        //    }
+        //})
+
+
+
+        getAllItemMaster();
+
+        getAllItemSchema();
+
+    })();
+
+
+    $("#btnAddItem").click(function () {
+
+        //$("#divItemMaster").validate();
+
+        var userdata = {};
+        userdata.itemID = $("#txtItemID").val();
+        userdata.amount = $("#txtAmount").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddEditItemMaster", "Home")',
+            data: "{data:'" + JSON.stringify(userdata) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    getAllItemMaster();
+                    clearItemMaster();
+                }
+            }
+        });
+
+    });
+
+    function clearItemMaster() {
+        $("#txtItemID").val('');
+        $("#txtAmount").val('');
+        $("#txtItemID").removeAttr("disabled");
+    }
+
+    function deleteItem(e) {
+        console.log(e);
+        console.log($(e).attr("data-id"));
+        var userdata = {};
+        userdata.itemID = ($(e).attr("data-id"));
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DeleteItemMaster", "Home")',
+            data: "{data:'" + JSON.stringify(userdata) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    getAllItemMaster();
+                    clearItemMaster();
+                }
+            }
+        });
+    }
+
+    function updateItem(e) {
+        console.log(e);
+        console.log($(e).attr("data-id"));
+        var userdata = {};
+        userdata.itemID = ($(e).attr("data-id"));
+
+        $("#txtItemID").val($(e).attr("data-id"));
+        $("#txtAmount").val($(e).attr("data-Amt"));
+
+        $("#txtItemID").attr("disabled", "disabled");
+
+    }
+
+    function getAllItemMaster() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetAllItemMaster","Home")',
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                //ApplyTemplate(data);
+                $('#placeHolder').setTemplate($('#tblUser').html());
+                $('#placeHolder').processTemplate(data);
+
+            }
+        });
+    }
+
+
+    //schema
+    function AddEditSchema() {
+        var userdata = {};
+        userdata.Alias = $("#txtAlias").val();
+        userdata.SchemaID = $("#txtSchemaID").val();
+        userdata.Formula = $("#txtFormula").val();
+        userdata.Priority = $("#txtPriority").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddEditSchema", "Home")',
+            data: "{data:'" + JSON.stringify(userdata) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    getAllItemSchema();
+                }
+            }
+        });
+
+    }
+
+    function clearItemSchema() {
+        $("#txtAlias").val('');
+        $("#txtSchemaID").val('');
+        $("#txtFormula").val('');
+        $("#txtPriority").val('');
+
+        $("#txtSchemaID").removeAttr("disabled");
+    }
+
+    function getAllItemSchema() {
+        console.log('in schema');
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetAllItemSchema", "Home")',
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $('#placeHolderSchema').setTemplate($('#tblSchema').html());
+                $('#placeHolderSchema').processTemplate(data);
+
+                clearItemSchema();
+            }
+        });
+    }
+
+
+    function deleteSchema(e) {
+        console.log(e);
+        console.log($(e).attr("data-id"));
+        var userdata = {};
+        userdata.SchemaID = ($(e).attr("data-id"));
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("DeleteSchema", "Home")',
+            data: "{data:'" + JSON.stringify(userdata) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    getAllItemSchema();
+                    clearItemSchema();
+                }
+            }
+        });
+    }
+
+
+    function updateSchema(e) {
+        console.log(e);
+        console.log($(e).attr("data-id"));
+        var userdata = {};
+        userdata.SchemaID = ($(e).attr("data-id"));
+        $("#txtSchemaID").val($(e).attr("data-id"));
+        $("#txtSchemaID").attr("disabled", "disabled");
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetSchemaByID", "Home")',
+            data: "{data:'" + JSON.stringify(userdata) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    $("#txtAlias").val(data.Alias);
+                    $("#txtSchemaID").val(data.SchemaID);
+                    $("#txtFormula").val(data.Formula);
+                    $("#txtPriority").val(data.Priority);
+
+                }
+            }
+        });
+    }
+
+    $("#btnExport").click(function () {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetDataToExport", "Home")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+
+                if (data != null) {
+                    $('#placeHolderExcel').setTemplate($('#tblExcel').html());
+                    $('#placeHolderExcel').processTemplate(data);
+                }
+            }
+        });
+
+    });
+
+
+
+
+</script>
+

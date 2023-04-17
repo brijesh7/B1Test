@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PracticleB1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PracticleB1.dbo.ItemMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ItemMaster">
+    <Key>
+      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="Amount" />
+    </Key>
+    <Property Name="ItemID" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PracticleB1.dbo.ItemSchema' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ItemSchema">
+    <Key>
+      <PropertyRef Name="Alias" />
+      <PropertyRef Name="SchemaID" />
+      <PropertyRef Name="Formula" />
+      <PropertyRef Name="Priority" />
+    </Key>
+    <Property Name="Alias" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="SchemaID" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Formula" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PracticleB1ModelStoreContainer">
+    <EntitySet Name="ItemMaster" EntityType="Self.ItemMaster" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ItemMaster].[ItemID] AS [ItemID], 
+    [ItemMaster].[Amount] AS [Amount]
+    FROM [dbo].[ItemMaster] AS [ItemMaster]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ItemSchema" EntityType="Self.ItemSchema" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ItemSchema].[Alias] AS [Alias], 
+    [ItemSchema].[SchemaID] AS [SchemaID], 
+    [ItemSchema].[Formula] AS [Formula], 
+    [ItemSchema].[Priority] AS [Priority]
+    FROM [dbo].[ItemSchema] AS [ItemSchema]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

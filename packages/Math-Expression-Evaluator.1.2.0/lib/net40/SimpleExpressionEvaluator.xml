@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleExpressionEvaluator</name>
+    </assembly>
+    <members>
+        <member name="T:SimpleExpressionEvaluator.ExpressionEvaluator">
+            <summary>
+            Class for compiling and evaluating simple mathematical expressions
+            </summary>
+        </member>
+        <member name="P:SimpleExpressionEvaluator.ExpressionEvaluator.Culture">
+            <summary>
+            Gets the current culture used by <see cref="T:SimpleExpressionEvaluator.ExpressionEvaluator"></see> when parsing strings into numbers
+            </summary>
+        </member>
+        <member name="M:SimpleExpressionEvaluator.ExpressionEvaluator.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:SimpleExpressionEvaluator.ExpressionEvaluator"></see> using <see cref="P:System.Globalization.CultureInfo.InvariantCulture" />
+            </summary>
+        </member>
+        <member name="M:SimpleExpressionEvaluator.ExpressionEvaluator.#ctor(System.Globalization.CultureInfo)">
+            <summary>
+            Initializes new instance of <see cref="T:SimpleExpressionEvaluator.ExpressionEvaluator"></see> using specified culture info
+            </summary>
+            <param name="culture">Culture to use for parsing decimal numbers</param>
+        </member>
+        <member name="M:SimpleExpressionEvaluator.ExpressionEvaluator.Compile(System.String)">
+            <summary>
+            Compiles parameterized mathematical expression into a delegate which can be invoked with different arguments without having to parse the expression again.
+            </summary>
+            <param name="expression">Expression to parse and compile</param>
+            <returns>Delegate compiled from the expression</returns>
+        </member>
+        <member name="M:SimpleExpressionEvaluator.ExpressionEvaluator.Evaluate(System.String,System.Object)">
+            <summary>
+            Parses and evaluates an expression with the specified arguments
+            </summary>
+            <param name="expression">Expression to parse</param>
+            <param name="argument">An object containing arguments for the expression</param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleExpressionEvaluator.ExpressionEvaluator.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)">
+            <summary>
+            
+            </summary>
+            <param name="binder"></param>
+            <param name="args"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
