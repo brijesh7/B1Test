@@ -13,25 +13,23 @@ jobs:
   build:
    runs-on: windows-2019
 
- 
-
-steps:
-- uses: actions/checkout@v2
+   steps:
+   - uses: actions/checkout@v2
 
  
 
-- name: Setup MSBuild
-  uses: microsoft/setup-msbuild@v1
+   - name: Setup MSBuild
+     uses: microsoft/setup-msbuild@v1
 
-- name: setup-msbuild
-  uses: microsoft/setup-msbuild@v1.1
-
- 
-
-- name: Restore Packages
-  run: nuget restore B1Test.sln
+   - name: setup-msbuild
+     uses: microsoft/setup-msbuild@v1.1
 
  
 
-- name: Build solution
-  run: msbuild B1Test.sln -t:rebuild -property:Configuration=Release
+   - name: Restore Packages
+     run: nuget restore B1Test.sln
+
+ 
+
+   - name: Build solution
+     run: msbuild B1Test.sln -t:rebuild -property:Configuration=Release
