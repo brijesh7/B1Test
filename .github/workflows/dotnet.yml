@@ -1,35 +1,21 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET
-
-on:
+'on':
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - main
 jobs:
   build:
-   runs-on: windows-2019
-
-   steps:
-   - uses: actions/checkout@v2
-
- 
-
-   - name: Setup MSBuild
-     uses: microsoft/setup-msbuild@v1
-
-   - name: setup-msbuild
-     uses: microsoft/setup-msbuild@v1.1
-
- 
-
-   - name: Restore Packages
-     run: nuget restore B1Test.sln
-
- 
-
-   - name: Build solution
-     run: msbuild B1Test.sln -t:rebuild -property:Configuration=Release
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup MSBuild1
+        uses: microsoft/setup-msbuild@v1.1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: Restore Packages
+        run: nuget restore B1Test.sln
+      - name: Build solution
+        run: 'msbuild B1Test.sln -t:rebuild -property:Configuration=Release'
