@@ -23,7 +23,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build .\B1Test.sln
+      run: dotnet build
     #- name: Run MSBuild
     #  run: msbuild .\B1Test.sln
     - name: Test
