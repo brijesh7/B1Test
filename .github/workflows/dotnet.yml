@@ -10,9 +10,16 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup MSBuild1
-        uses: microsoft/setup-msbuild@v1.1
+      - name: checkout repo
+        uses: actions/checkout@v2
+      #- name: Setup MSBuild1
+      #  uses: microsoft/setup-msbuild@v1.1
+      - name: Setup .Net
+        uses: action/setup-dotnet@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Restore Packages
