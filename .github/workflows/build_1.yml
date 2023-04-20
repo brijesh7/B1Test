@@ -16,3 +16,11 @@ jobs:
       run: nuget restore
     - name: Build
       run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+    - name: Generate Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: |
+          ./B1Test/bin/Release/*.exe
+          ./B1Test/bin/Release/*.dll
+          ./B1Test/bin/Release/*.config
