@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
-        working-directory: B1Test
+        working-directory: ./B1Test
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -29,6 +29,6 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Restore Packages
-        run: nuget restore B1Test.sln
+        run: nuget restore ./B1Test.sln
       - name: Build solution
         run: 'msbuild B1Test.sln -t:rebuild -property:Configuration=Release'
