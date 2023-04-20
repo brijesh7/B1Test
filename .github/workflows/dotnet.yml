@@ -21,6 +21,7 @@ jobs:
           distribution: temurin
           java-version: '11'
           check-latest: true
+          
     #  - name: Set up .NET
     #    run: >
     #      $url =
@@ -32,10 +33,11 @@ jobs:
     #      echo "DOTNET_ROOT=C:\Program Files\dotnet" >> $Env:GITHUB_ENV
     #  - name: Setup MSBuild
     #    uses: microsoft/setup-msbuild@v1
+    
       - name: Build and Publish package
-        run: >
-          dotnet restore
-          dotnet publish --configuration "Release" --self-contained "true" -o ../publish;
+        run: |
+          dotnet build
+          dotnet publish -c Release -r win-x64 -o ../publish B1Test.sln;
 
       #- name: Restore Packages
       #  run: nuget restore B1Test.sln
