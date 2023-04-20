@@ -21,4 +21,4 @@ jobs:
       with:
         name: Artifacts
         path: |
-          B1Test/B1Test/bin/Release/*
+          B1Test/bin/Release/*
