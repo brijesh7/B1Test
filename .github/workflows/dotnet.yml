@@ -32,7 +32,7 @@ jobs:
         run: |
             cd B1Test
             dotnet build --configuration Release --no-restore
-            dotnet publish -r linux-x64 --configuration "Release" --self-contained "true" -o ../publish;
+            dotnet publish --configuration "Release" --self-contained "true" -o ../publish;
             
       #- name: Restore Packages
       #  run: nuget restore B1Test.sln
