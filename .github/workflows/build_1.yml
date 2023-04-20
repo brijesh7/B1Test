@@ -3,11 +3,6 @@ name: Build and Test ASP.NET Web Application
   - push
   - pull_request
 jobs:
- print_path:
-    runs-on: windows-latest
-    steps:
-      - name: Print Current Path
-        run: echo %cd%
  build: 
   runs-on: windows-2019
   steps:
@@ -28,6 +23,6 @@ jobs:
       with:
         name: Artifacts
         path: |
-          B1Test/publish
+          ./publish
        #   B1Test/bin/*.*
        #   B1test/web.config
