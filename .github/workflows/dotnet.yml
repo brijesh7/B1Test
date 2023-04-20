@@ -9,31 +9,35 @@ name: .NET
 jobs:
   build:
     runs-on: windows-2019
-    #defaults:
-    #  run:
-    #    working-directory: ./B1Test
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-      #- name: Setup MSBuild1
-      #  uses: microsoft/setup-msbuild@v1.1
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.x
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '11'
           check-latest: true
+      - name: Set up .NET
+        run: >
+          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin
+          --install-dir $HOME/.dotnet --channel 6.0
+
+          echo "DOTNET_ROOT=$HOME/.dotnet" >> $GITHUB_ENV
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Build and Publish package
-        run: |
-            cd B1Test
-            dotnet build --configuration Release --no-restore
-            dotnet publish --configuration "Release" --self-contained "true" -o ../publish;
-            
+        run: >
+          cd B1Test
+
+          dotnet build --configuration Release --no-restore
+
+          dotnet publish --configuration "Release" --self-contained "true" -o
+          ../publish;
+
       #- name: Restore Packages
       #  run: nuget restore B1Test.sln
       #- name: Build solution
