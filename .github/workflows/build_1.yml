@@ -28,3 +28,4 @@ jobs:
         name: Artifacts
         path: |
           B1Test/bin/*.*
+          B1test/web.config
