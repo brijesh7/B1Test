@@ -16,6 +16,8 @@ jobs:
       run: nuget restore
     - name: Build
       run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+    - name: Print Current Path
+      run: echo %cd%
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
