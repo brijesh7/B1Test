@@ -9,6 +9,9 @@ name: .NET
 jobs:
   build:
     runs-on: windows-2019
+    defaults:
+      run:
+        working-directory: src
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
