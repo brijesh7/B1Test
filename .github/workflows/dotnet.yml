@@ -23,22 +23,28 @@ jobs:
           check-latest: true
       - name: Set up .NET
         run: >
-          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin
-          --install-dir $HOME/.dotnet --channel 6.0
-
-          echo "DOTNET_ROOT=$HOME/.dotnet" >> $GITHUB_ENV
+          $url =
+          'https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-6.0.200-windows-x64-installer'
+          $fileName = 'dotnet-sdk-6.0.200-win-x64.exe'
+          Invoke-WebRequest -Uri $url -OutFile $fileName
+          .\$fileName /quiet
+          # Set DOTNET_ROOT environment variable
+          echo "DOTNET_ROOT=C:\Program Files\dotnet" >> $Env:GITHUB_ENV
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Build and Publish package
         run: >
           cd B1Test
-
           dotnet build --configuration Release --no-restore
-
-          dotnet publish --configuration "Release" --self-contained "true" -o
-          ../publish;
+          dotnet publish --configuration "Release" --self-contained "true" -o ../publish;
 
       #- name: Restore Packages
       #  run: nuget restore B1Test.sln
       #- name: Build solution
       #  run: 'msbuild B1Test.sln -t:rebuild -property:Configuration=Release'
+
+#- name: Set up .NET
+#        run: >
+#          curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin
+#          --install-dir $HOME/.dotnet --channel 6.0
+#          echo "DOTNET_ROOT=$HOME/.dotnet" >> $GITHUB_ENV
