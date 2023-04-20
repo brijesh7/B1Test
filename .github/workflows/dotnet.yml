@@ -9,9 +9,9 @@ name: .NET
 jobs:
   build:
     runs-on: windows-2019
-    defaults:
-      run:
-        working-directory: ./B1Test
+    #defaults:
+    #  run:
+    #    working-directory: ./B1Test
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
       - name: Build and Publish package
         run: |
             dotnet restore
-            dotnet publish -r --configuration "Release" --self-contained "true" -o ../publish;
+            dotnet publish -r win-x64 --configuration "Release" --self-contained "true" -o ../publish;
             
       #- name: Restore Packages
       #  run: nuget restore B1Test.sln
