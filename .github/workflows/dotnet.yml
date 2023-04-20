@@ -30,7 +30,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Build and Publish package
         run: |
-            dotnet restore
+            dotnet restore B1Test.sln
             dotnet publish -r win-x64 --configuration "Release" --self-contained "true" -o ../publish;
             
       #- name: Restore Packages
