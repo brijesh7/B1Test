@@ -21,11 +21,13 @@ jobs:
       run: nuget restore
     - name: Build
       run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
-    
+    - name: Publish the project
+      run: dotnet publish -c Release -r win-x64 -o ./publish
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Artifacts
         path: |
-          B1Test/bin/*.*
-          B1test/web.config
+          B1Test/publish
+       #   B1Test/bin/*.*
+       #   B1test/web.config
