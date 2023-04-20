@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-2019
     defaults:
       run:
-        working-directory: src
+        working-directory: B1Test
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
