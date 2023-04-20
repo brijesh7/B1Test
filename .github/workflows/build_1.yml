@@ -4,14 +4,14 @@ name: Build and Test ASP.NET Web Application
   - pull_request
 jobs:
  build: 
-  runs-on: windows-2022
+  runs-on: windows-2019
   steps:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Setup .NET Framework SDK
       uses: microsoft/setup-msbuild@v1
-      with:
-       dotnet-version: 4.7.2
+     # with:
+     #  dotnet-version: 4.7.2
     - name: Restore NuGet packages
       run: nuget restore
     - name: Build
