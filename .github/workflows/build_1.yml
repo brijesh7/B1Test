@@ -8,19 +8,24 @@ jobs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
     - name: Setup .NET Framework SDK
       uses: microsoft/setup-msbuild@v1
      # with:
      #  dotnet-version: 4.7.2
+     
     - name: Restore NuGet packages
       run: nuget restore
+      
     - name: Build
       run: msbuild /t:Build /p:Configuration=Release
     #  run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+    
     - name: Publish the project
-      run: dotnet pack --configuration Release B1Test/B1Test.csproj
+    #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
-    #  run: dotnet publish -c Release -r win-x64 -o ./publish
+      run: dotnet publish -c Release -r win-x64 -o ./publish
+      
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
