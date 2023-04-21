@@ -23,7 +23,7 @@ jobs:
     
     - name: Build and Publish the project
       run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package 
-        /p:SkipInvalidConfigurations=true /p:PackageLocation="./Publish/"
+        /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
@@ -34,6 +34,6 @@ jobs:
       with:
         name: Artifacts
         path: |
-          ./publish
+          /publish/
        #   B1Test/bin/*.*
        #   B1test/web.config
