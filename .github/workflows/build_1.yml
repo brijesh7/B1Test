@@ -22,7 +22,7 @@ jobs:
     #  run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
     
     - name: Publish the project
-      run: msbuild B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+      run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
