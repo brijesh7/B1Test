@@ -17,11 +17,11 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore
       
-    - name: Build
-      run: msbuild /t:Build /p:Configuration=Release
+    #- name: Build
+    #  run: msbuild /t:Build /p:Configuration=Release (working)
     #  run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
     
-    - name: Publish the project
+    - name: Build and Publish the project
       run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
