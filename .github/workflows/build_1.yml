@@ -23,7 +23,7 @@ jobs:
     
     - name: Build and Publish the project
       run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package 
-        /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+        /p:SkipInvalidConfigurations=true /p:PackageLocation="C:/a/B1Test/B1Test/B1Test/obj/Release/Package/PackageTmp/"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
