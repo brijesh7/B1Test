@@ -37,4 +37,4 @@ jobs:
       with:
         name: build-artifacts
         path: |
-          /home/runner/work/B1Test/B1Test/B1Test/bin/Release/
+          /B1Test/bin/Release/
