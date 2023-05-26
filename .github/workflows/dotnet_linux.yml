@@ -38,4 +38,4 @@ jobs:
       with:
         name: build-artifacts
         path: |
-          /B1Test/B1Test/obj/Debug/Package/PackageTmp/
+          /B1Test/B1Test/obj/Release/Package/PackageTmp/
